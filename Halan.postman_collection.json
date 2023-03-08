@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "94b25863-df35-41c6-8c9a-0ebe08324707",
+		"name": "Halan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HalanTask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const response = pm.response.json()",
+							"const age = response.age",
+							"const count = response.count",
+							"const name = response.name",
+							"",
+							"pm.test(\"Values Assertion\",() => {",
+							"    pm.expect(age).to.be.equal(Number(pm.collectionVariables.get('expectedAge')))",
+							"    pm.expect(count).to.be.equal(Number(pm.collectionVariables.get('expectedCount')))",
+							"    pm.expect(name).to.be.equal(pm.collectionVariables.get('expectedName'))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io/?name=meelad",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "meelad"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "expectedAge",
+			"value": "33",
+			"type": "default"
+		},
+		{
+			"key": "expectedCount",
+			"value": "21",
+			"type": "default"
+		},
+		{
+			"key": "expectedName",
+			"value": "meelad",
+			"type": "default"
+		}
+	]
+}
